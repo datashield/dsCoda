@@ -19,7 +19,7 @@ ilrDS <- function(
   X_param <- eval(parse(text = X), envir = parent.frame())
 
   if (is.null(V)) {
-    ilr_object <- compositions::ilr(x = X_param)
+    ilr_object <- compositions::ilr(x = X_param, V = compositions::ilrBase(X_param))
   } else {
     ilr_object <- compositions::ilr(x = X_param, V = V)
   }
