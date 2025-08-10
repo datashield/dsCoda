@@ -8,7 +8,8 @@ License: GPL-3
 Depends:
     R (>= 3.5.0)
 Imports:
-    compositions
+    compositions,
+    zCompositions
 Suggests:
     knitr,
     testthat
