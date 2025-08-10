@@ -1,0 +1,17 @@
+Package: dsCoda
+Title: DataSHIELD server-side functions for compositional data analysis
+Description: DataSHIELD server side functions for compositional data analysis using the compositions package.
+Version: 0.1.0
+Author: Xavier Escriba Montagut and Paul Burton
+Maintainer: Xavier Escriba Montagut and Paul Burton
+License: GPL-3
+Depends:
+    R (>= 3.5.0)
+Imports:
+    compositions
+Suggests:
+    knitr,
+    testthat
+RoxygenNote: 7.3.2
+Encoding: UTF-8
+VignetteBuilder: knitr 
