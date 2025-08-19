@@ -24,7 +24,8 @@ jobs:
 #              sudo apt-get remove -y libmariadb-dev libmariadb-dev-compat
       - run:
           command: |
-              sudo apt-get install -y libxml2-dev
+              sudo apt-get install -y libgit2-dev
+#              sudo apt-get install -y libxml2-dev
 #              sudo apt-get install -y libudunits2-dev
 #              sudo apt-get install -y libfontconfig1-dev
 #              sudo apt-get install -y libharfbuzz-dev
@@ -34,7 +35,6 @@ jobs:
 #              sudo apt-get install -y libtiff5-dev
 #              sudo apt-get install -y libjpeg-dev
 #              sudo apt-get install -y libgdal-dev
-              sudo apt-get install -y libgit2-dev
       - run:
           command: |
               sudo Rscript -e "install.packages('remotes', dependencies=TRUE)"
