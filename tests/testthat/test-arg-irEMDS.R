@@ -22,7 +22,7 @@ set.standard.disclosure.settings()
 
 context("irEMDS::arg::no parameters")
 test_that("no parameters", {
-    expect_error(irEMDS(), "'data' must be of a vector type, was 'NULL'", fixed = TRUE)
+    expect_error(irEMDS(), "could not find function \"irEMDS\"", fixed = TRUE)
 })
 
 #context("irEMDS::arg::pred_obj is NULL")
