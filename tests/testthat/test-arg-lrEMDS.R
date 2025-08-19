@@ -25,17 +25,12 @@ test_that("no parameters", {
     expect_error(lrEMDS(), "argument is of length zero", fixed = TRUE)
 })
 
-#context("lrEMDS::arg::pred_obj is NULL")
-# test_that("pred_obj is NULL", {
-#     expect_error(lrEMDS(pred_obj = NULL), "invalid first argument", fixed = TRUE)
-# })
+context("lrEMDS::arg::X not present")
+test_that("X not present", {
+    X <- "D"
 
-#context("lrEMDS::arg::missing pred_obj")
-#test_that("missing pred_obj", {
-#    pred_obj <- "pred"
-#
-#    expect_error(lrEMDS(pred_obj = pred_obj), "The specified pred_obj does not exist", fixed = TRUE)
-#})
+    expect_error(lrEMDS(X = X), "comparison (<) is possible only for atomic and list types", fixed = TRUE)
+})
 
 #
 # Done

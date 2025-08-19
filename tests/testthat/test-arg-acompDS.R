@@ -25,6 +25,13 @@ test_that("no parameters", {
     expect_error(acompDS(), "'data' must be of a vector type, was 'NULL'", fixed = TRUE)
 })
 
+context("acompDS::arg::X not present")
+test_that("X not present", {
+    X <- "D"
+
+    expect_error(ilrDS(X = X), "default method not implemented for type 'list'", fixed = TRUE)
+})
+
 context("acompDS::arg::X not NULL parts not present")
 test_that("X not NULL and parts not present", {
     X     <- "D"
