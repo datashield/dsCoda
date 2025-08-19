@@ -25,17 +25,14 @@ test_that("no parameters", {
     expect_error(acompDS(), "'data' must be of a vector type, was 'NULL'", fixed = TRUE)
 })
 
-#context("acompDS::arg::pred_obj is NULL")
-# test_that("pred_obj is NULL", {
-#     expect_error(acompDS(pred_obj = NULL), "invalid first argument", fixed = TRUE)
-# })
+context("acompDS::arg::X not NULL parts not present")
+test_that("X not NULL and parts not present", {
+    X     <- "D"
+    D     <- data.frame(A = c(1.0, 2.0, 4.0, 5.0), B = c(5.0, 1.0, 2.0, 4.0), C = c(2.0, 4.0, 5.0, 1.0))
+    parts <- "novar"
 
-#context("acompDS::arg::missing pred_obj")
-#test_that("missing pred_obj", {
-#    pred_obj <- "pred"
-#
-#    expect_error(acompDS(pred_obj = pred_obj), "The specified pred_obj does not exist", fixed = TRUE)
-#})
+    expect_error(acompDS(X = X, parts = parts), "Unknown variable namenovar", fixed = TRUE)
+})
 
 #
 # Done
