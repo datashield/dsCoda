@@ -12,7 +12,7 @@
 # Set up
 #
 
-context("acompDS::arg::setup")
+context("ilrDS::arg::setup")
 
 set.standard.disclosure.settings()
 
@@ -20,27 +20,27 @@ set.standard.disclosure.settings()
 # Tests
 #
 
-context("acompDS::arg::no parameters")
+context("ilrDS::arg::no parameters")
 test_that("no parameters", {
-    expect_error(acompDS(), "'data' must be of a vector type, was 'NULL'", fixed = TRUE)
+    expect_error(ilrDS(), "'data' must be of a vector type, was 'NULL'", fixed = TRUE)
 })
 
-#context("acompDS::arg::pred_obj is NULL")
+#context("ilrDS::arg::pred_obj is NULL")
 # test_that("pred_obj is NULL", {
-#     expect_error(acompDS(pred_obj = NULL), "invalid first argument", fixed = TRUE)
+#     expect_error(ilrDS(pred_obj = NULL), "invalid first argument", fixed = TRUE)
 # })
 
-#context("acompDS::arg::missing pred_obj")
+#context("ilrDS::arg::missing pred_obj")
 #test_that("missing pred_obj", {
 #    pred_obj <- "pred"
 #
-#    expect_error(acompDS(pred_obj = pred_obj), "The specified pred_obj does not exist", fixed = TRUE)
+#    expect_error(ilrDS(pred_obj = pred_obj), "The specified pred_obj does not exist", fixed = TRUE)
 #})
 
 #
 # Done
 #
 
-context("acompDS::arg::shutdown")
+context("ilrDS::arg::shutdown")
 
-context("acompDS::arg::done")
+context("ilrDS::arg::done")
