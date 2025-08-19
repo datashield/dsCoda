@@ -12,7 +12,7 @@
 # Set up
 #
 
-context("irEMDS::arg::setup")
+context("lrEMDS::arg::setup")
 
 set.standard.disclosure.settings()
 
@@ -20,27 +20,27 @@ set.standard.disclosure.settings()
 # Tests
 #
 
-context("irEMDS::arg::no parameters")
+context("lrEMDS::arg::no parameters")
 test_that("no parameters", {
-    expect_error(irEMDS(), "could not find function \"irEMDS\"", fixed = TRUE)
+    expect_error(lrEMDS(), "argument is of length zero", fixed = TRUE)
 })
 
-#context("irEMDS::arg::pred_obj is NULL")
+#context("lrEMDS::arg::pred_obj is NULL")
 # test_that("pred_obj is NULL", {
-#     expect_error(irEMDS(pred_obj = NULL), "invalid first argument", fixed = TRUE)
+#     expect_error(lrEMDS(pred_obj = NULL), "invalid first argument", fixed = TRUE)
 # })
 
-#context("irEMDS::arg::missing pred_obj")
+#context("lrEMDS::arg::missing pred_obj")
 #test_that("missing pred_obj", {
 #    pred_obj <- "pred"
 #
-#    expect_error(irEMDS(pred_obj = pred_obj), "The specified pred_obj does not exist", fixed = TRUE)
+#    expect_error(lrEMDS(pred_obj = pred_obj), "The specified pred_obj does not exist", fixed = TRUE)
 #})
 
 #
 # Done
 #
 
-context("irEMDS::arg::shutdown")
+context("lrEMDS::arg::shutdown")
 
-context("irEMDS::arg::done")
+context("lrEMDS::arg::done")
