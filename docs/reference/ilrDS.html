@@ -44,7 +44,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ilrDS</span><span class="op">(</span>X <span class="op">=</span> <span class="cn">NULL</span>, V <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ilrDS</span><span class="op">(</span>X <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -55,9 +55,9 @@
 <dd><p>name of the composition dataset, matrix, data.frame or acomp object. Character string.</p></dd>
 
 
-<dt id="arg-v">V<a class="anchor" aria-label="anchor" href="#arg-v"></a></dt>
-<dd><p>an orthonormal basis matrix to be used for the ILR transform. If NULL, the default
-basis used by compositions::ilr will be applied.</p></dd>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>additional arguments including flattened V matrix values and V_ncol parameter.
+When V matrix is provided, it should be flattened and passed with V_ncol specifying the number of columns.</p></dd>
 
 </dl></div>
     <div id="value">
