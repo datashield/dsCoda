@@ -24,25 +24,6 @@ context("ilrDS::smk::X not NULL V is NULL")
 test_that("X not NULL and V is NULL", {
     X <- "D"
     D <- data.frame(A = c(1.0, 2.0, 4.0, 5.0), B = c(5.0, 1.0, 2.0, 4.0), C = c(2.0, 4.0, 5.0, 1.0))
-
-    res <- ilrDS(X = X, V = NULL)
-
-    expect_length(res, 8)
-    expect_equal(class(res), "rmult")
-    expect_equal(res[[1]],  1.1380445, tolerance = 1e-06)
-    expect_equal(res[[2]], -0.4901291, tolerance = 1e-06)
-    expect_equal(res[[3]], -0.4901291, tolerance = 1e-06)
-    expect_equal(res[[4]], -0.1577863, tolerance = 1e-06)
-    expect_equal(res[[5]], -0.09109797, tolerance = 1e-06)
-    expect_equal(res[[6]],  0.84892845, tolerance = 1e-06)
-    expect_equal(res[[7]],  0.46517210, tolerance = 1e-06)
-    expect_equal(res[[8]], -1.22300258, tolerance = 1e-06)
-})
-
-context("ilrDS::smk::X not NULL V is NULL")
-test_that("X not NULL and V is NULL", {
-    X <- "D"
-    D <- data.frame(A = c(1.0, 2.0, 4.0, 5.0), B = c(5.0, 1.0, 2.0, 4.0), C = c(2.0, 4.0, 5.0, 1.0))
     V <- compositions:::ilrBase(D)
 
     expect_length(V, 6)
@@ -54,7 +35,7 @@ test_that("X not NULL and V is NULL", {
     expect_equal(V[[5]], -0.4082483, tolerance = 1e-06)
     expect_equal(V[[6]],  0.8164966, tolerance = 1e-06)  
 
-    res <- ilrDS(X = X, V = V)
+    res <- ilrDS(X = X, V = V, V_ncol = 2)
 
     expect_length(res, 8)
     expect_equal(class(res), "rmult")
