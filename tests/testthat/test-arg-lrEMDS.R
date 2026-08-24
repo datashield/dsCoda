@@ -22,7 +22,7 @@ set.standard.disclosure.settings()
 
 context("lrEMDS::arg::no parameters")
 test_that("no parameters", {
-    expect_error(lrEMDS(), "argument is of length zero", fixed = TRUE)
+    expect_error(lrEMDS(), "X must be a data matrix with at least two rows and two columns", fixed = TRUE)
 })
 
 context("lrEMDS::arg::X not present")
