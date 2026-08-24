@@ -32,13 +32,40 @@ test_that("X not present", {
     expect_error(ilrDS(X = X), "default method not implemented for type 'list'", fixed = TRUE)
 })
 
+context("ilrDS::arg::X not NULL V is NULL")
+test_that("X not NULL and V is NULL", {
+    X <- "D"
+    D <- data.frame(A = c(1.0, 2.0, 4.0, 5.0), B = c(5.0, 1.0, 2.0, 4.0), C = c(2.0, 4.0, 5.0, 1.0))
+    V <- NULL
+
+    expect_error(ilrDS(X = X, V = V), "V_ncol parameter is required when V matrix is provided", fixed = TRUE)
+})
+
 context("ilrDS::arg::X not NULL V not present")
 test_that("X not NULL and V not present", {
     X <- "D"
     D <- data.frame(A = c(1.0, 2.0, 4.0, 5.0), B = c(5.0, 1.0, 2.0, 4.0), C = c(2.0, 4.0, 5.0, 1.0))
     V <- "novar"
 
-    expect_error(ilrDS(X = X, V = V), "requires numeric/complex matrix/vector arguments", fixed = TRUE)
+    expect_error(ilrDS(X = X, V = V), "V_ncol parameter is required when V matrix is provided", fixed = TRUE)
+})
+
+context("ilrDS::arg::X not NULL V present, V_ncol not present")
+test_that("X not NULL and V not present", {
+    X <- "D"
+    D <- data.frame(A = c(1.0, 2.0, 4.0, 5.0), B = c(5.0, 1.0, 2.0, 4.0), C = c(2.0, 4.0, 5.0, 1.0))
+    V <- compositions:::ilrBase(D)
+
+    expect_error(ilrDS(X = X, V = V), "V_ncol parameter is required when V matrix is provided", fixed = TRUE)
+})
+
+context("ilrDS::arg::X not NULL V present, V_ncol is NULL")
+test_that("X not NULL and V not present", {
+    X <- "D"
+    D <- data.frame(A = c(1.0, 2.0, 4.0, 5.0), B = c(5.0, 1.0, 2.0, 4.0), C = c(2.0, 4.0, 5.0, 1.0))
+    V <- compositions:::ilrBase(D)
+
+    expect_error(ilrDS(X = X, V = V, V_ncol = NULL), "V_ncol parameter is required when V matrix is provided", fixed = TRUE)
 })
 
 #

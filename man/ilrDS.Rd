@@ -4,13 +4,13 @@
 \alias{ilrDS}
 \title{Computes isometric log-ratio (ILR) coordinates for compositional data}
 \usage{
-ilrDS(X = NULL, V = NULL)
+ilrDS(X = NULL, ...)
 }
 \arguments{
 \item{X}{name of the composition dataset, matrix, data.frame or acomp object. Character string.}
 
-\item{V}{an orthonormal basis matrix to be used for the ILR transform. If NULL, the default
-basis used by compositions::ilr will be applied.}
+\item{...}{additional arguments including flattened V matrix values and V_ncol parameter.
+When V matrix is provided, it should be flattened and passed with V_ncol specifying the number of columns.}
 }
 \value{
 a matrix-like object with ILR coordinates.

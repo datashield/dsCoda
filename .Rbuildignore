@@ -1,2 +1,4 @@
 ^LICENSE$
-^.circleci/$
+^\.circleci/config\.yml$
+^_pkgdown.yml$
+^docs$
