@@ -7,18 +7,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>DataSHIELD server-side functions for compositional data analysis • dsCoda</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="DataSHIELD server-side functions for compositional data analysis">
 <meta name="description" content="DataSHIELD server side functions for compositional data analysis using the compositions package.">
 <meta property="og:description" content="DataSHIELD server side functions for compositional data analysis using the compositions package.">
 </head>
 <body>
-    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-none" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="index.html">dsCoda</a>
 
@@ -37,19 +39,90 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
+<li class="nav-item"><a class="nav-link" href="https://github.com/datashield/dsCoda/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
 
   </div>
-</nav><div class="container template-home">
+</nav><div class="container template-home" id="container">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="dscoda">dsCoda<a class="anchor" aria-label="anchor" href="#dscoda"></a>
 </h1></div>
-<p>Cora DataSHIELD server site base functions</p>
+<p>DataSHIELD server-side functions for compositional data analysis (CoDa). <code>dsCoda</code> is installed on DataSHIELD servers (Opal or Rock) and is driven by the client package <a href="https://github.com/datashield/dsCodaClient">dsCodaClient</a>. It wraps the <a href="https://cran.r-project.org/package=compositions" class="external-link">compositions</a> and <a href="https://cran.r-project.org/package=zCompositions" class="external-link">zCompositions</a> packages so that closure, zero replacement and log-ratio transforms of compositional data (for example the 24-hour movement behaviour composition studied in the ProPASS consortium) run on the server. All three functions are <em>assign</em> functions: their results are stored in the server session and never returned to the client.</p>
+<div class="section level2">
+<h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a>
+</h2>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr class="header">
+<th>Function</th>
+<th>Called by</th>
+<th>What it does</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code><a href="reference/lrEMDS.html">lrEMDS()</a></code></td>
+<td><code>ds.lrEM()</code></td>
+<td>Replace zeros / values below detection limit with <code><a href="https://rdrr.io/pkg/zCompositions/man/lrEM.html" class="external-link">zCompositions::lrEM()</a></code>.</td>
+</tr>
+<tr class="even">
+<td><code><a href="reference/acompDS.html">acompDS()</a></code></td>
+<td><code>ds.acomp()</code></td>
+<td>Create a closed Aitchison composition with <code><a href="https://rdrr.io/pkg/compositions/man/acomp.html" class="external-link">compositions::acomp()</a></code>.</td>
+</tr>
+<tr class="odd">
+<td><code><a href="reference/ilrDS.html">ilrDS()</a></code></td>
+<td><code>ds.ilr()</code></td>
+<td>Compute isometric log-ratio coordinates with <code><a href="https://rdrr.io/pkg/compositions/man/ilr.html" class="external-link">compositions::ilr()</a></code>, with the default or a supplied basis.</td>
+</tr>
+</tbody>
+</table>
+<p>The methods are declared in <code>inst/DATASHIELD</code>, so Opal, Rock and DSLite register them automatically when the package is installed.</p>
 </div>
-  </main><aside class="col-md-3"><div class="license">
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>On an <strong>Opal</strong> server, as administrator: <em>Administration &gt; DataSHIELD &gt; Packages &gt; Add package &gt; From GitHub</em>, user <code>datashield</code>, package <code>dsCoda</code>. Or from R with <a href="https://cran.r-project.org/package=opalr" class="external-link">opalr</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">o</span> <span class="op">&lt;-</span> <span class="fu">opalr</span><span class="fu">::</span><span class="fu"><a href="https://www.obiba.org/opalr/reference/opal.login.html" class="external-link">opal.login</a></span><span class="op">(</span>username <span class="op">=</span> <span class="st">"administrator"</span>, password <span class="op">=</span> <span class="st">"..."</span>, url <span class="op">=</span> <span class="st">"https://opal.example.org"</span><span class="op">)</span></span>
+<span><span class="fu">opalr</span><span class="fu">::</span><span class="fu"><a href="https://www.obiba.org/opalr/reference/dsadmin.install_github_package.html" class="external-link">dsadmin.install_github_package</a></span><span class="op">(</span><span class="va">o</span>, <span class="st">"dsCoda"</span>, username <span class="op">=</span> <span class="st">"datashield"</span><span class="op">)</span></span>
+<span><span class="fu">opalr</span><span class="fu">::</span><span class="fu"><a href="https://www.obiba.org/opalr/reference/dsadmin.publish_package.html" class="external-link">dsadmin.publish_package</a></span><span class="op">(</span><span class="va">o</span>, <span class="st">"dsCoda"</span><span class="op">)</span></span></code></pre></div>
+<p>On a <strong>Rock</strong> server the package must be part of the Rock R image; add it alongside <code>dsBase</code> when building the image, then publish the DataSHIELD settings from Opal.</p>
+<p>The server also needs <a href="https://github.com/datashield/dsBase" class="external-link">dsBase</a>, and <a href="https://github.com/molgenis/ds-tidyverse" class="external-link">dsTidyverse</a> if analysts use the tibble-based regression workflow described in the <code>dsCodaClient</code> vignette.</p>
+<p>For local development and testing without Opal, install the package into your R library and load it into <a href="https://cran.r-project.org/package=DSLite" class="external-link">DSLite</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"datashield/dsCoda"</span><span class="op">)</span></span>
+<span><span class="va">dslite.server</span> <span class="op">&lt;-</span> <span class="fu">DSLite</span><span class="fu">::</span><span class="fu"><a href="https://datashield.github.io/DSLite/reference/newDSLiteServer.html" class="external-link">newDSLiteServer</a></span><span class="op">(</span></span>
+<span>  tables <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>study1 <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span>,</span>
+<span>  config <span class="op">=</span> <span class="fu">DSLite</span><span class="fu">::</span><span class="fu"><a href="https://datashield.github.io/DSLite/reference/defaultDSConfiguration.html" class="external-link">defaultDSConfiguration</a></span><span class="op">(</span>include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"dsBase"</span>, <span class="st">"dsCoda"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
+</h2>
+<p>Function reference on the <a href="https://datashield.github.io/dsCoda/" class="external-link">package site</a>. The analysis workflow is documented in the <a href="https://github.com/datashield/dsCodaClient">dsCodaClient</a> vignette.</p>
+</div>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>GPL-3. Developed by the ProPASS consortium and the DataSHIELD community.</p>
+</div>
+</div>
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/datashield/dsCoda/">Browse source code</a></li>
+<li><a href="https://github.com/datashield/dsCoda/issues">Report a bug</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a></li>
@@ -67,8 +140,12 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Xavier Escriba Montagut <br><small class="roles"> Maintainer </small>   </li>
-<li><a href="authors.html">More about authors...</a></li>
+<li>
+<a href="https://github.com/ESCRI11" class="external-link">Xavier Escribà-Montagut</a> <br><small class="roles"> Author </small>   </li>
+<li>
+<a href="https://github.com/StuartWheater" class="external-link">Stuart Wheater</a> <br><small class="roles"> Author, maintainer </small>   </li>
+<li>
+<a href="https://datashield.org" class="external-link"><img src="https://raw.githubusercontent.com/datashield/dstemplate/main/man/figures/dscommunity.png" alt="DataSHIELD Community" width="90"></a> <br><small class="roles"> Copyright holder, funder </small>   </li>
 </ul>
 </div>
 
@@ -78,20 +155,16 @@
 </div>
 
 
-    <footer><div class="pkgdown-footer-left">
-  <p>Developed by Xavier Escriba Montagut.</p>
+   </div>
+  <footer><div class="container">
+  <div class="pkgdown-footer-left">
+  <p>Developed by <a href="https://github.com/ESCRI11" class="external-link">Xavier Escribà-Montagut</a>, <a href="https://github.com/StuartWheater" class="external-link">Stuart Wheater</a>, <a href="https://datashield.org" class="external-link"><img src="https://raw.githubusercontent.com/datashield/dstemplate/main/man/figures/dscommunity.png" alt="DataSHIELD Community" width="90"></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
-    </footer>
-</div>
-
-
-
-
-
-  </body>
+  </div></footer>
+</body>
 </html>

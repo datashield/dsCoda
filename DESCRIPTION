@@ -2,9 +2,14 @@ Package: dsCoda
 Title: DataSHIELD server-side functions for compositional data analysis
 Description: DataSHIELD server side functions for compositional data analysis using the compositions package.
 Version: 0.2.0
-Author: Xavier Escriba Montagut and Stuart Wheater
-Maintainer: Xavier Escriba Montagut and Stuart Wheater <stuart.wheater@arjuna.com>
+Authors@R: c(
+    person("Xavier", "Escribà-Montagut", email = "xavier.escriba.montagut@gmail.com", role = "aut"),
+    person("Stuart", "Wheater", email = "stuart.wheater@arjuna.com", role = c("aut", "cre")),
+    person("DataSHIELD community", role = c("cph", "fnd"))
+  )
 License: GPL-3
+URL: https://github.com/datashield/dsCoda
+BugReports: https://github.com/datashield/dsCoda/issues
 Depends:
     R (>= 3.5.0)
 Imports:
