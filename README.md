@@ -1,2 +1,66 @@
 # dsCoda
-Cora DataSHIELD server site base functions
+
+DataSHIELD server-side functions for compositional data analysis (CoDa).
+`dsCoda` is installed on DataSHIELD servers (Opal or Rock) and is driven by
+the client package
+[dsCodaClient](https://github.com/datashield/dsCodaClient). It wraps the
+[compositions](https://cran.r-project.org/package=compositions) and
+[zCompositions](https://cran.r-project.org/package=zCompositions) packages
+so that closure, zero replacement and log-ratio transforms of compositional
+data (for example the 24-hour movement behaviour composition studied in the
+ProPASS consortium) run on the server. All three functions are *assign*
+functions: their results are stored in the server session and never
+returned to the client.
+
+## Functions
+
+| Function | Called by | What it does |
+|---|---|---|
+| `lrEMDS()` | `ds.lrEM()` | Replace zeros / values below detection limit with `zCompositions::lrEM()`. |
+| `acompDS()` | `ds.acomp()` | Create a closed Aitchison composition with `compositions::acomp()`. |
+| `ilrDS()` | `ds.ilr()` | Compute isometric log-ratio coordinates with `compositions::ilr()`, with the default or a supplied basis. |
+
+The methods are declared in `inst/DATASHIELD`, so Opal, Rock and DSLite
+register them automatically when the package is installed.
+
+## Installation
+
+On an **Opal** server, as administrator: *Administration > DataSHIELD >
+Packages > Add package > From GitHub*, user `datashield`, package `dsCoda`.
+Or from R with [opalr](https://cran.r-project.org/package=opalr):
+
+```r
+o <- opalr::opal.login(username = "administrator", password = "...", url = "https://opal.example.org")
+opalr::dsadmin.install_github_package(o, "dsCoda", username = "datashield")
+opalr::dsadmin.publish_package(o, "dsCoda")
+```
+
+On a **Rock** server the package must be part of the Rock R image; add it
+alongside `dsBase` when building the image, then publish the DataSHIELD
+settings from Opal.
+
+The server also needs [dsBase](https://github.com/datashield/dsBase), and
+[dsTidyverse](https://github.com/molgenis/ds-tidyverse) if analysts use the
+tibble-based regression workflow described in the `dsCodaClient` vignette.
+
+For local development and testing without Opal, install the package into
+your R library and load it into
+[DSLite](https://cran.r-project.org/package=DSLite):
+
+```r
+remotes::install_github("datashield/dsCoda")
+dslite.server <- DSLite::newDSLiteServer(
+  tables = list(study1 = my_data),
+  config = DSLite::defaultDSConfiguration(include = c("dsBase", "dsCoda"))
+)
+```
+
+## Documentation
+
+Function reference on the [package site](https://datashield.github.io/dsCoda/).
+The analysis workflow is documented in the
+[dsCodaClient](https://github.com/datashield/dsCodaClient) vignette.
+
+## License
+
+GPL-3. Developed by the ProPASS consortium and the DataSHIELD community.
